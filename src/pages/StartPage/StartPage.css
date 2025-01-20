@@ -1,0 +1,13 @@
+.startPageSection {
+    width: 100%;
+    height: 100vh; 
+    background-size: cover; /* Растягиваем изображение на весь экран */
+    /* background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Отключаем повторение изображения */
+}
+  .first_photo {
+    background-image: url('../../assets/images/first_photo_1x.webp');
+}
+.second_photo {
+    background-image: url('../../assets/images/second_photo_1x.webp');
+}
