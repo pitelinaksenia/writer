@@ -1,7 +1,7 @@
-export default function CardButton({label, className}) {
-    return (
-        <button className={className}>
-            {label}
-        </button>
-    );
-};
+export default function CardButton({ label, onClick, className }) {
+  return (
+    <button onClick={onClick} className={className}>
+      {label}
+    </button>
+  );
+}

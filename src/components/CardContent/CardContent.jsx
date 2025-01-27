@@ -1,22 +1,20 @@
-export default function CardContent({title, description, info, buttons}) {
+import CardButton from "../CardButton/CardButton";
+
+export default function CardContent({title, description, info, buttons, children}) {
     return(
     <div className="cardContent">
-        <h2 className="cardTitle" title={title}>Об авторе</h2>
-        <h3 className="cardDescription" description={description}>Глушков Игорь Михайлович</h3>
-        <p className="cardInfo" info={info}>
-        Родился в Омске в 1957
-        <br />
-        в 1984 окончил СибАДИ
-        <br />
-        Служил в войсках ПВО
-        <br />
-        КМС по плаванию
-        <br />
-        Руководил проектом аэропорт "Федеровка"
-        </p>
-        <CardButton
-            label="подробнее"
-        />
+        {title && <h2 className="cardTitle"> {title}</h2>}
+        {description && <h3 className="cardDescription">{description}</h3>}
+        {info && <p className="cardInfo">{info} </p>}
+        {/* {...buttons} */}
+        {buttons.map((button) => (
+            <CardButton
+            key={button.id}
+            label = {button.label}
+            onClick = {button.onClick}
+            />
+        ))}
+        {children}
     </div>
-    )
+    );
 }
