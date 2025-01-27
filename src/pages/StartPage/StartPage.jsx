@@ -5,6 +5,7 @@ import CardContent from "../../components/CardContent/CardContent";
 import SwipeCardContent from "../../components/SwipeCardContent/SwipeCardContent";
 import CardButton from "../../components/CardButton/CardButton";
 
+// главная страница
 const StartPage = () => {
   return (
     <>
