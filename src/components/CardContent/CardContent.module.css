@@ -1,0 +1,20 @@
+.cardContent__title {
+  font-family: "Unbounded";
+  font-weight: 600;
+  font-size: 50;
+  color: #ffffff;
+}
+
+.cardContent__description {
+  font-family: "Unbounded";
+  font-weight: 400;
+  font-size: 32;
+  color: #ffffff;
+}
+
+.cardContent__info {
+  font-family: "Unbounded";
+  font-weight: 400;
+  font-size: 25;
+  color: #c9cfd5;
+}
