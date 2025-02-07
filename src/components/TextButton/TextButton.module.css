@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap"); */
 
 .cardContent__textButton {
   width: 10vw;
   height: 4vh;
   border-radius: 50px;
   box-shadow: none;
+  outline: none;
+  border: none;
   background-color: #ebeced;
   font-family: "Unbounded";
   font-weight: 700;

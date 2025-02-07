@@ -7,7 +7,7 @@ export default function CardContent({
   children,
 }) {
   return (
-    <div className={styles.cardContent}>
+    <div className={styles.cardContent__column}>
       {title && <h2 className={styles.cardContent__title}> {title}</h2>}
       {description && (
         <h3 className={styles.cardContent__description}>{description}</h3>

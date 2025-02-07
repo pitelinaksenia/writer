@@ -1,20 +1,28 @@
+.cardContent__column {
+  padding-left: 2.5vw;
+  display: flex;
+  flex-direction: column;
+}
 .cardContent__title {
   font-family: "Unbounded";
   font-weight: 600;
-  font-size: 50;
+  font-size: 2rem;
   color: #ffffff;
+  margin-bottom: 2.7vh;
 }
 
 .cardContent__description {
   font-family: "Unbounded";
   font-weight: 400;
-  font-size: 32;
+  font-size: 1.25rem;
   color: #ffffff;
+  margin-bottom: 3.4vh;
 }
 
 .cardContent__info {
   font-family: "Unbounded";
   font-weight: 400;
-  font-size: 25;
+  font-size: 1rem;
   color: #c9cfd5;
+  margin-bottom: 4vh;
 }

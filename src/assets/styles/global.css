@@ -1,14 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap");
 
 @font-face {
-  font-family: "RozoviiChulok";
-  src: url("../fonts/RozoviiChulok.otf") format("otf");
+  font-family: "Rozovii Chulok";
+  src: url("../fonts/RozoviiChulok-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.spacer {
+  margin: 90px 0;
 }

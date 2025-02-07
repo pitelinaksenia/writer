@@ -1,0 +1,12 @@
+.dots_container {
+  display: flex;
+  gap: 15px; /* Расстояние между точками */
+  justify-content: center; /* Выравнивание по центру */
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #c4c5c3;
+  border-radius: 50%; /* Делаем круг */
+}
