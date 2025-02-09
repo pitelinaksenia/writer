@@ -1,44 +1,25 @@
 import React from "react";
-import CardContainer from "../../components/CardContainer/CardContainer";
+import Container from "../../components/Container/Container";
 import CardContent from "../../components/CardContent/CardContent";
 import SwipeCardContent from "../../components/SwipeCardContent/SwipeCardContent";
 import TextButton from "../../components/TextButton/TextButton";
-import ImageButton from "../../components/ImageButton/ImageButton";
-import NavigationDots from "../../components/NavigationDots/NavigationDots";
 import styles from "./StartPage.module.css";
+import "../../components/Container/Container.css";
 
-// главная страница
 const StartPage = () => {
   return (
     <>
       <div className={styles.startPageSection}>
         <section className={styles.firstPhoto}>
-          {/* <div className="spacer"></div> */}
-          <CardContainer
-            style={{
-              width: "26.7vw",
-              height: "81.5vh",
-              backgroundColor: "rgba(29, 36, 40, 0.5)",
-              borderRadius: "60px",
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-              backdropFilter: "blur(15px)",
-            }}
-          >
-            <div style={{ padding: "1vh" }}></div>
+          <Container className="swipeCardContainer">
             <SwipeCardContent
               overline="Игорь Глушков"
               title="Якутский пленник"
               description="Дебютный сборник рассказов"
-              info={
-                <>
-                  Продано более 3 млн <br />
+              info={`Продано более 3 млн
                   копий по всему миру.
-                  <br />
                   Погрузитесь в удивительный
-                  <br />
-                  мир рассказов и историй.
-                </>
-              }
+                  мир рассказов и историй.`}
               buttons={[
                 <TextButton
                   className={styles.__textButton}
@@ -48,66 +29,19 @@ const StartPage = () => {
                   }}
                 />,
               ]}
-            >
-              <div style={{ margin: "40px" }}></div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <ImageButton
-                  name="arrowLeft"
-                  width="50px"
-                  height="50px"
-                  fill="none"
-                  onClick={() => {
-                    console.log("left-arrow clicked");
-                  }}
-                ></ImageButton>
-                <NavigationDots totalDots={3}></NavigationDots>
-                <ImageButton
-                  name="arrowRight"
-                  width="50px"
-                  height="50px"
-                  fill="none"
-                  onClick={() => {
-                    console.log("right-arrow clicked");
-                  }}
-                ></ImageButton>
-              </div>
-            </SwipeCardContent>
-          </CardContainer>
+            ></SwipeCardContent>
+          </Container>
         </section>
         <section className={styles.secondPhoto}>
-          <CardContainer
-            style={{
-              width: "22vw",
-              height: "58vh",
-              backgroundColor: "rgba(29, 36, 40, 0.5)",
-              borderRadius: "50px",
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-              backdropFilter: "blur(15px)",
-            }}
-          >
-            <div style={{ padding: "2vh" }}></div>
+          <Container className="cardContainer">
             <CardContent
               title="Об авторе"
               description="Глушков Игорь Михайлович"
-              info={
-                <>
-                  Родился в Омске в 1957
-                  <br />
+              info={`Родился в Омске в 1957
                   в 1984 окончил СибАДИ
-                  <br />
                   Служил в войсках ПВО
-                  <br />
                   КМС по плаванию
-                  <br />
-                  Руководил проектом аэропорт "Федеровка"
-                </>
-              }
+                  Руководил проектом аэропорт "Федеровка"`}
               buttons={[
                 <TextButton
                   className={styles.__textButton}
@@ -118,29 +52,15 @@ const StartPage = () => {
                 />,
               ]}
             />
-          </CardContainer>
-          <CardContainer
-            style={{
-              width: "22vw",
-              height: "34vh",
-              backgroundColor: "rgba(29, 36, 40, 0.5)",
-              borderRadius: "50px",
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-              backdropFilter: "blur(15px)",
-            }}
-          >
-            <div style={{ padding: "2vh" }}></div>
+          </Container>
+          <Container className="cardContainer">
             <CardContent
               title="Книги"
-              info={
-                <>
+              info={`
                   Вы можете скачать книги,
-                  <br />
                   читать их онлайн, а также
-                  <br />
                   слушать в аудиоформат
-                </>
-              }
+                `}
               buttons={[
                 <TextButton
                   className={styles.__textButton}
@@ -151,27 +71,12 @@ const StartPage = () => {
                 />,
               ]}
             />
-          </CardContainer>
-          <CardContainer
-            style={{
-              width: "22vw",
-              height: "33vh",
-              backgroundColor: "rgba(29, 36, 40, 0.5)",
-              borderRadius: "50px",
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-              backdropFilter: "blur(15px)",
-            }}
-          >
-            <div style={{ padding: "2vh" }}></div>
+          </Container>
+          <Container className="cardContainer">
             <CardContent
               title="Контакты"
-              info={
-                <>
-                  Если возникли вопросы,
-                  <br />
-                  идеи и предложения
-                </>
-              }
+              info={`Если возникли вопросы,
+                  идеи и предложения`}
               buttons={[
                 <div style={{ display: "flex", gap: "10px" }}>
                   <TextButton
@@ -198,7 +103,7 @@ const StartPage = () => {
                 </div>,
               ]}
             />
-          </CardContainer>
+          </Container>
         </section>
       </div>
     </>
