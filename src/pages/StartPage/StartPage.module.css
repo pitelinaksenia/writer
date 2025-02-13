@@ -1,0 +1,20 @@
+.firstPhoto {
+  background-image: url("../../assets/images/background_1.webp");
+  background-size: 1536px;
+}
+.secondPhoto {
+  background-image: url("../../assets/images/background_2.webp");
+  width: 100%;
+}
+
+.__textButton {
+  width: 10vw;
+  height: 4vh;
+  border-radius: 50px;
+  box-shadow: none;
+  background-color: #ebeced;
+  font-family: "Unbounded";
+  font-weight: 700;
+  font-size: 1rem;
+  color: #4b6a7a;
+}
