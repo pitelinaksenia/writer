@@ -13,7 +13,7 @@ const StartPage = () => {
         <section className={styles.firstPhoto}>
           <Container className="swipeCardContainer">
             <SwipeCardContent
-              overline="Игорь Глушков"
+              overline="Игорь"
               title="Якутский пленник"
               description="Дебютный сборник рассказов"
               info={`Продано более 3 млн
