@@ -22,7 +22,6 @@ const StartPage = () => {
                   мир рассказов и историй.`}
               buttons={[
                 <TextButton
-                  className={styles.__textButton}
                   label="читать"
                   onClick={() => {
                     console.log("читать clicked");
@@ -44,7 +43,6 @@ const StartPage = () => {
                   Руководил проектом аэропорт "Федеровка"`}
               buttons={[
                 <TextButton
-                  className={styles.__textButton}
                   label="подробнее"
                   onClick={() => {
                     console.log("подробнее clicked");
@@ -59,11 +57,10 @@ const StartPage = () => {
               info={`
                   Вы можете скачать книги,
                   читать их онлайн, а также
-                  слушать в аудиоформат
+                  слушать в аудиоформате
                 `}
               buttons={[
                 <TextButton
-                  className={styles.__textButton}
                   label="читать"
                   onClick={() => {
                     console.log("читать clicked");
@@ -80,24 +77,27 @@ const StartPage = () => {
               buttons={[
                 <div style={{ display: "flex", gap: "10px" }}>
                   <TextButton
-                    className={styles.__textButton}
                     label="вк"
                     onClick={() => {
                       console.log("вк clicked");
                     }}
                   />
                   <TextButton
-                    className={styles.__textButton}
                     label="тг"
                     onClick={() => {
                       console.log("тг clicked");
                     }}
                   />
                   <TextButton
-                    className={styles.__textButton}
                     label="email"
                     onClick={() => {
                       console.log("email clicked");
+                    }}
+                  />
+                  <TextButton
+                    label="fb"
+                    onClick={() => {
+                      console.log("fb clicked");
                     }}
                   />
                 </div>,
