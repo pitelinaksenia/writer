@@ -1,4 +1,3 @@
-import React from "react";
 import Container from "../../components/Container/Container";
 import CardContent from "../../components/CardContent/CardContent";
 import SwipeCardContent from "../../components/SwipeCardContent/SwipeCardContent";
@@ -9,9 +8,9 @@ import "../../components/Container/Container.css";
 const StartPage = () => {
   return (
     <>
-      <div className={styles.startPageSection}>
-        <section className={styles.firstPhoto}>
-          <Container className="swipeCardContainer">
+      <div>
+          <section className={styles.firstPhoto}>
+          <Container className= "swipeCardContainer">
             <SwipeCardContent
               overline="Игорь Глушков"
               title="Якутский пленник"

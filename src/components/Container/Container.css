@@ -6,7 +6,6 @@
   backdrop-filter: blur(40px);
   margin-left: 220px;
   margin-top: 90px;
-  margin-bottom: 160px;
 }
 
 .cardContainer {
@@ -15,9 +14,6 @@
   border-radius: 50px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(40px);
-  margin-top: 100px;
-  /* margin-bottom: 30px; */
   margin-left: 980px;
-  /* margin-top: 90px; */
-  /* margin-bottom: 30px; */
+  margin-top: 90px;
 }

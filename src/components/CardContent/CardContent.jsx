@@ -13,7 +13,7 @@ export default function CardContent({
         <h3 className={styles.cardContent__description}>{description}</h3>
       )}
       {info && <p className={styles.cardContent__info}>{info} </p>}
-      {...buttons}
+      {buttons}
       {children}
     </div>
   );

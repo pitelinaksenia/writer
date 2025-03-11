@@ -1,4 +1,3 @@
-import { Children } from "react";
 import CardContent from "../CardContent/CardContent";
 import ImageButton from "../ImageButton/ImageButton";
 import NavigationDots from "../NavigationDots/NavigationDots";
@@ -7,11 +6,10 @@ import styles from "./SwipeCardContent.module.css";
 export default function SwipeCardContent({
   children,
   overline,
-  direction,
   ...props
 }) {
   return (
-    <div className={styles.swipeCardContent__column}>
+    <div>
       <p className={styles.swipeCardContent__overline}>{overline}</p>
       <CardContent {...props} />
       <div
@@ -26,7 +24,6 @@ export default function SwipeCardContent({
           name="arrowLeft"
           width="50px"
           height="50px"
-          fill="none"
           onClick={() => {
             console.log("left-arrow clicked");
           }}
@@ -36,7 +33,6 @@ export default function SwipeCardContent({
           name="arrowRight"
           width="50px"
           height="50px"
-          fill="none"
           onClick={() => {
             console.log("right-arrow clicked");
           }}
@@ -46,3 +42,4 @@ export default function SwipeCardContent({
     </div>
   );
 }
+

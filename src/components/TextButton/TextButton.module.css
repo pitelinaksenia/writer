@@ -8,8 +8,15 @@
   outline: none;
   border: none;
   background-color: #ebeced;
-  font-family: "Unbounded";
+  font-family: "Unbounded", sans-serif;
   font-weight: 700;
   font-size: 1rem;
+  text-align: center;
   color: #4b6a7a;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+
+.cardContent__textButton:hover {
+  background-color: #5F98CC;
+  color: white;
 }

@@ -9,3 +9,4 @@ export default function NavigationDots({ totalDots }) {
     </div>
   );
 }
+
