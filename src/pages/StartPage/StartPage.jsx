@@ -9,12 +9,14 @@ const StartPage = () => {
   return (
     <>
       <div>
-          <section className={styles.firstPhoto}>
-          <Container className= "swipeCardContainer">
+        <section className={styles.firstPhoto}>
+          <Container className="swipeCardContainer">
             <SwipeCardContent
               overline="Игорь Глушков"
-              title="Якутский пленник"
-              description="Дебютный сборник рассказов"
+              title={`Якутский
+                      пленник`}
+              description={`Дебютный сборник 
+                            рассказов`}
               info={`Продано более 3 млн
                   копий по всему миру.
                   Погрузитесь в удивительный
@@ -34,12 +36,14 @@ const StartPage = () => {
           <Container className="cardContainer">
             <CardContent
               title="Об авторе"
-              description="Глушков Игорь Михайлович"
+              description={`Глушков Игорь 
+                            Михайлович`}
               info={`Родился в Омске в 1957
                   в 1984 окончил СибАДИ
                   Служил в войсках ПВО
                   КМС по плаванию
-                  Руководил проектом аэропорт "Федеровка"`}
+                  Руководил проектом 
+                  аэропорт "Федеровка"`}
               buttons={[
                 <TextButton
                   label="подробнее"

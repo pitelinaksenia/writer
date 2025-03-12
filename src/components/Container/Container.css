@@ -1,10 +1,10 @@
 .swipeCardContainer {
-  width: 26.7vw;
+  width: max-content;
   background-color: rgba(29, 36, 40, 0.5);
   border-radius: 60px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(40px);
-  margin-left: 220px;
+  margin-left: 250px;
   margin-top: 90px;
 }
 

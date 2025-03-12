@@ -1,6 +1,7 @@
 .imageButton {
     transition: filter step-end;
     cursor: pointer;
+    user-select: none;
 }
 
 .imageButton:hover {
