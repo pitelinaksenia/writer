@@ -1,11 +1,11 @@
 .firstPhoto {
-  background-image: url("../../assets/images/background-1.webp");
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
+    background-image: url("../../assets/images/background-1.webp");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }
 .secondPhoto {
-  background-image: url("../../assets/images/background-2.webp");
-  background-size: cover;
-  width: 100vw;
+    background-image: url("../../assets/images/background-2.webp");
+    background-size: cover;
+    width: 100vw;
 }

@@ -5,5 +5,6 @@
 }
 
 .imageButton:hover {
-    filter: brightness(0) saturate(100%) invert(61%) sepia(12%) saturate(921%) hue-rotate(166deg) brightness(94%) contrast(88%);
+    filter: brightness(0) saturate(100%) invert(61%) sepia(12%) saturate(921%) hue-rotate(166deg) brightness(94%)
+        contrast(88%);
 }
