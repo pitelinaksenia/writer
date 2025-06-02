@@ -1,7 +1,9 @@
-export default function TextButton({ label, onClick, className }) {
-  return (
-    <button onClick={onClick} className={className}>
-      {label}
-    </button>
-  );
+import styles from "./TextButton.module.css";
+
+export default function TextButton({ label, onClick }) {
+    return (
+        <button onClick={onClick} className={styles.cardContent__textButton}>
+            {label}
+        </button>
+    );
 }

@@ -1,7 +1,13 @@
 .swipeCardContent__overline {
-  font-family: "Rozovii Chulok";
-  font-size: 3rem;
-  color: #ffffff;
-  margin-bottom: 4vh;
-  text-align: center;
+    font-family: "Rozovii Chulok", sans-serif;
+    font-size: 3rem;
+    color: #ffffff;
+    margin-top: 4vh;
+    text-align: center;
+}
+
+.swipeCardContent__navigationContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vh 2.5vw 3.5vh;
 }
