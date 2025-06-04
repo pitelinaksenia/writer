@@ -1,0 +1,29 @@
+.libraryPage {
+    background-color: #A3BCD9;
+    min-height: 100vh;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: #000000;
+    padding: 2rem;
+}
+
+.booksList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.pageTitle {
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 800px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: #1f2a44;
+}

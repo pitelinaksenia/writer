@@ -103,7 +103,7 @@ const StartPage = () => {
                             info={`Если возникли вопросы,
                   идеи и предложения`}
                             buttons={[
-                                <div style={{ display: "flex", gap: "10px" }}>
+                                <div style={{display: "flex", gap: "10px"}}>
                                     <TextButton
                                         label="вк"
                                         onClick={() => {
