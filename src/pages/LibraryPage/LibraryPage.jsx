@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import LibraryBook from '../../components/LibraryBook/LibraryBook.jsx';
-import {getBooks} from '../../api/books.js';
+import {deleteBook, getBooks} from '../../api/books.js';
 import styles from './LibraryPage.module.css';
 
 const LibraryPage = () => {
@@ -36,6 +36,36 @@ const LibraryPage = () => {
         return <div className={styles.libraryPage}>Ошибка: {error}</div>;
     }
 
+    const handleDeleteBook = async (bookId) => {
+        setLoading(true);
+        try {
+
+            const success = await deleteBook(bookId);
+            if (success) {
+                // Удаляем книгу из состояния
+                setBooks(books.filter((book) => book.id !== bookId));
+            } else {
+                setError('Не удалось удалить книгу');
+            }
+        } catch (err) {
+            setError('Ошибка при удалении книги: ' + err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleUpdateBook = async (bookId) => {
+    };
+
+    if (loading) {
+        return <div className={styles.libraryPage}>Загрузка...</div>;
+    }
+
+    if (error) {
+        return <div className={styles.libraryPage}>Ошибка: {error}</div>;
+
+    }
+
     return (
         <div className={styles.libraryPage}>
             <h1 className={styles.pageTitle}>Библиотека</h1>
@@ -46,9 +76,11 @@ const LibraryPage = () => {
                             key={book.id}
                             bookId={book.id}
                             title={book.title}
-                            cover={book.cover}
+                            cover={book.coverPath}
                             description={book.description}
                             onClick={() => handleBookClick(book.id)}
+                            onDelete={() => handleDeleteBook(book.id)}
+                            onUpdate={() => handleUpdateBook(book.id)}
                         />
                     ))
                 ) : (

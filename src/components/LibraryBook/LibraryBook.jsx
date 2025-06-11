@@ -1,7 +1,17 @@
 import PropTypes from 'prop-types';
 import styles from './LibraryBook.module.css';
 
-export default function LibraryBook({bookId, title = '', cover = '', description = '', onClick}) {
+export default function LibraryBook({bookId, title = '', cover = '', description = '', onClick, onDelete, onUpdate}) {
+    const handleDelete = (e) => {
+        e.stopPropagation();
+        onDelete(bookId);
+    };
+
+    const handleUpdate = (e) => {
+        e.stopPropagation();
+        onUpdate(bookId);
+    };
+
     return (
         <div
             className={styles.book}
@@ -15,6 +25,12 @@ export default function LibraryBook({bookId, title = '', cover = '', description
             <div className={styles.content}>
                 <h2 className={styles.title}>{title}</h2>
                 <p className={styles.description}>{description}</p>
+                <button title="Delete" onClick={handleDelete} className={styles.deleteButton}>
+                    Удалить
+                </button>
+                <button title="Update" onClick={handleUpdate} className={styles.updateButton}>
+                    Редактировать
+                </button>
             </div>
         </div>
     );
@@ -26,4 +42,5 @@ LibraryBook.propTypes = {
     cover: PropTypes.string,
     description: PropTypes.string,
     onClick: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
 };

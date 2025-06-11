@@ -10,7 +10,7 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
     user-select: none;
-    line-height: 115%;
+    line-height: 100%;
 }
 
 .book:hover,
@@ -52,4 +52,62 @@
     text-align: left;
     text-transform: none;
     margin: 0;
+}
+
+.deleteButton {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start; /* Ограничиваем ширину кнопки */
+    margin-top: 0.5rem; /* Добавляем отступ сверху */
+}
+
+.deleteButton:hover {
+    background-color: #e63939;
+    transform: translateY(-2px);
+}
+
+.deleteButton:active {
+    transform: translateY(0);
+}
+
+.deleteButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.3);
+}
+
+.updateButton {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #4d79ff; /* Changed color to a blue shade to differentiate from delete */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+}
+
+.updateButton:hover {
+    background-color: #3963e6; /* Darker blue for hover */
+    transform: translateY(-2px);
+}
+
+.updateButton:active {
+    transform: translateY(0);
+}
+
+.updateButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(77, 121, 255, 0.3); /* Matching blue focus ring */
 }
