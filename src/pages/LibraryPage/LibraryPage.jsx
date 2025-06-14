@@ -54,7 +54,8 @@ const LibraryPage = () => {
         }
     };
 
-    const handleUpdateBook = async (bookId) => {
+    const handleUpdateBook = (bookId) => {
+        navigate(`/updatebook/${bookId}`);
     };
 
     if (loading) {

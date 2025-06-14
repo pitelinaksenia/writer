@@ -1,11 +1,15 @@
-import {get, ref, set, remove} from "firebase/database";
+import {get, ref, set, remove, update} from "firebase/database";
 import {db} from "../services/firebase.js";
-import {GetObjectCommand, PutObjectCommand, DeleteObjectCommand} from "@aws-sdk/client-s3";
-import {getSignedUrl} from "@aws-sdk/s3-request-presigner";
-import {coverBucket, bookBucket, s3} from "../services/storage.js";
+import {coverBucket, bookBucket, getFileURL, addFileToStorage, deleteFileFromStorage} from "../services/storage.js";
 import {generateUUID} from "../core/utils.js";
 
 const dbRef = ref(db, 'books');
+
+export const FileEditAction = {
+	keep: "keep",
+	replace: "replace",
+	remove: "remove",
+}
 
 /* Book:
 	id
@@ -24,8 +28,7 @@ export async function getBooks() {
 			const books = Object.values(snapshot.val());
 
 			const promiseArray = books.map(async book => {
-				book.coverPath = await getImageURL(book.coverPath)
-				console.warn("XXX", book.coverPath);
+				book.coverPath = await getFileURL(book.coverPath)
 				return book;
 			})
 			await Promise.all(promiseArray);
@@ -40,32 +43,14 @@ export async function getBooks() {
 	}
 }
 
-export async function getImageURL(imageKey) {
-	if (!imageKey) return '';
-	const params = {
-		Bucket: coverBucket,
-		Key: imageKey,
-	};
-
-	try {
-		const command = new GetObjectCommand(params);
-		const url = await getSignedUrl(s3, command, {expiresIn: 36000});
-		console.log(url)// URL действителен 1 час
-		return url;
-	} catch (err) {
-		console.error("Ошибка получения URL:", err);
-		return '';
-	}
-}
-
 /* BookData:
 	id
 	title
 	author
 	description
 	year
-	cover
-	source
+	coverPath
+	sourcePath
  */
 
 export async function addBook(bookData) {
@@ -81,7 +66,6 @@ export async function addBook(bookData) {
 			return false;
 		}
 	}
-
 
 	if (!await addFileToStorage(bookData.source, bookBucket, sourcePath)) {
 		await deleteFileFromStorage(bookData.cover, coverBucket, coverPath);
@@ -115,32 +99,6 @@ export async function addBook(bookData) {
 	return true;
 }
 
-async function addFileToStorage(file, bucketName, filePath) {
-
-	if (!file || !(file instanceof File)) {
-		return false;
-	}
-
-	const arrayBuffer = await file.arrayBuffer();
-	const uint8Array = new Uint8Array(arrayBuffer);
-
-	const command = new PutObjectCommand({
-		Bucket: bucketName,
-		Key: filePath,
-		Body: uint8Array,
-		ContentType: file.type
-	});
-
-	try {
-		await s3.send(command);
-		console.log('Файл успешно загружен');
-		return true;
-	} catch (error) {
-		console.error('Ошибка загрузки файла:', error);
-		return false;
-	}
-}
-
 export async function deleteBook(bookId) {
 
 	const path = `${bookId}`;
@@ -151,14 +109,12 @@ export async function deleteBook(bookId) {
 		return false
 	}
 
-	// Удаляем источник
 	const sourceDeleteResult = await deleteFileFromStorage(bookBucket, path);
 	if (!sourceDeleteResult) {
 		console.log('Не удалось удалить source книги')
 		return false;
 	}
 
-	// Удаляем запись из Firebase
 	const bookRef = ref(db, `books/${bookId}`);
 	const firebaseRemovePromise = remove(bookRef);
 	if (!firebaseRemovePromise) {
@@ -170,46 +126,64 @@ export async function deleteBook(bookId) {
 	return true;
 }
 
-async function deleteFileFromStorage(bucketName, filePath) {
-	if (!filePath) {
-		console.log('Delete file with filePath: null ignored');
-		return false;
-	}
+export async function updateBook(bookData) {
+	const userRef = ref(db, `books/${bookData.id}`);
 
-	try {
-		const command = new DeleteObjectCommand({
-			Bucket: bucketName,
-			Key: filePath
+	const updates = {
+		id: bookData.id,
+		title: bookData.title,
+		author: bookData.author,
+		description: bookData.description,
+		year: bookData.year,
+		coverPath: await handleFileEditAction(bookData.id, bookData.coverActionStatus, bookData.cover, coverBucket),
+		sourcePath: await handleFileEditAction(bookData.id, bookData.sourceActionStatus, bookData.source, bookBucket),
+	};
+
+	let result = false;
+	await update(userRef, updates)
+		.then(() => {
+			console.log("Данные обновлены успешно.");
+			result = true;
+		})
+		.catch((error) => {
+			console.error("Ошибка при обновлении:", error);
 		});
-		await s3.send(command);
-		console.log(`Файл ${filePath} удален из бакета ${bucketName}`);
-		return true;
-	} catch (error) {
-		console.error(`Ошибка удаления файла ${filePath}:`, error);
-		return false;
+	return result;
+}
+
+async function handleFileEditAction(fileKey, editAction, file, bucketName) {
+	let filePath = null;
+	if (editAction === FileEditAction.remove) {
+		await deleteFileFromStorage(bucketName, fileKey);
+		filePath = null;
+	} else if (editAction === FileEditAction.replace) {
+		// replaces old file
+		await addFileToStorage(file, bucketName, fileKey);
+		filePath = fileKey;
 	}
+	return filePath;
 }
 
 
-async function getBookDetails(bookId) {
+export async function getBookDetails(bookId) {
 	if (!bookId) {
-		console.log()
-	}
-
-	const snapshot = await get(ref(db, `books/${bookId}`));
-	if (snapshot.exists()) {
-		const book = snapshot.val();
-
-		const promiseArray = book.map(async book => {
-			book.coverPath = await getImageURL(book.coverPath)
-			console.warn("XXX", book.coverPath);
-			return book;
-		})
-		await Promise.all(promiseArray);
-		return book;
-	} else {
-		console.log("Данные не найдены");
+		console.error("bookId не передан");
 		return null;
 	}
-
+	try {
+		const snapshot = await get(ref(db, `books/${bookId}`));
+		if (snapshot.exists()) {
+			const bookData = snapshot.val();
+			if (bookData.coverPath) {
+				bookData.coverPath = await getFileURL(bookData.coverPath);
+				console.log("Cover URL:", bookData.coverPath);
+			}
+			return bookData;
+		} else {
+			console.log("Книга с id", bookId, "не найдена");
+			return null;
+		}
+	} catch (error) {
+		console.error("Ошибка при получении книги:", error);
+	}
 }
