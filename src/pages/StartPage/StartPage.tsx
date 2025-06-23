@@ -5,6 +5,7 @@ import TextButton from "../../components/TextButton/TextButton";
 import styles from "./StartPage.module.css";
 import "../../components/Container/Container.css";
 
+
 const StartPage = () => {
     const contentCards = [
         {

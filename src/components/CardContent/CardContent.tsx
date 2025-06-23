@@ -1,5 +1,15 @@
+import React from "react";
 import styles from "./CardContent.module.css";
-export default function CardContent({ title, description, info, buttons, children }) {
+
+interface CardContentProps {
+    title: string;
+    description?: string;
+    info: string;
+    buttons: React.ReactElement[];
+    children?: React.ReactNode;
+}
+
+const CardContent: React.FC<CardContentProps> = ({title, description, info, buttons, children}) => {
     return (
         <div className={styles.cardContent__column}>
             {title && <h2 className={styles.cardContent__title}> {title}</h2>}
@@ -10,3 +20,5 @@ export default function CardContent({ title, description, info, buttons, childre
         </div>
     );
 }
+
+export default CardContent
