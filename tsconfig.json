@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "jsx": "react-jsx",
+        // Для React 17+ (Vite использует новый JSX-трансформер)
+        "moduleResolution": "node",
+        "allowJs": true,
+        // Разрешить JS-файлы
+        "checkJs": false,
+        // Отключить проверку JS (включите позже)
+        "strict": true,
+        // Мягкие настройки для начала
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        // Vite сам обрабатывает сборку
+        "baseUrl": "src",
+        "types": [
+            "vite/client"
+        ]
+        // Типы для Vite
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

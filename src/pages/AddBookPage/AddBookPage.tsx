@@ -1,46 +1,47 @@
+import React, {ChangeEvent} from "react";
 import {useState} from "react";
 import "./AddBookPage.css";
 import {coverBucket} from "../../services/storage.js";
-import {addBook} from "../../api/books.js";
+import {addBook} from "../../domain/book/bookService.js";
+import {AddBookFormData} from "../../domain/book/book";
 
-
-const AddBookForm = () => {
-    const [bookData, setBookData] = useState({
-        id: 0,
-        title: '',
-        author: '',
-        description: '',
-        year: '',
+const AddBookForm: React.FC = () => {
+    const [bookData, setBookData] = useState<AddBookFormData>({
+        id: "",
+        title: "",
+        author: "",
+        description: "",
+        year: "",
         cover: null,
         source: null,
     });
 
-    const [coverPreview, setCoverPreview] = useState(null);
+    const [coverPreview, setCoverPreview] = useState<string | null>(null);
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
         setBookData({...bookData, [name]: value});
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const {name, files} = e.target;
-        const file = files[0];
+        const file = files?.[0] || null;
         setBookData({...bookData, [name]: file});
 
-        if (name === 'cover' && file) {
+        if (name === "cover" && file) {
             const reader = new FileReader();
-            reader.onload = (e) => setCoverPreview(e.target.result);
+            reader.onload = (e) => setCoverPreview(e.target?.result as string | null);
             reader.readAsDataURL(file);
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('coverBucket:', coverBucket);
-        if (!await addBook(bookData)) {
+        console.log("coverBucket:", coverBucket);
+        if (!(await addBook(bookData))) {
             alert("Error adding book");
         }
-        console.log('Form Data:', {
+        console.log("Form Data:", {
             id: bookData.id,
             title: bookData.title,
             author: bookData.author,
@@ -89,7 +90,7 @@ const AddBookForm = () => {
                         value={bookData.description}
                         onChange={handleInputChange}
                         placeholder="Enter book description"
-                        rows="4"
+                        rows={4}
                     />
                 </div>
 
@@ -132,7 +133,7 @@ const AddBookForm = () => {
                     />
                 </div>
 
-                <button type="submit" className="submit-button" onClick={handleSubmit}>
+                <button type="submit" className="submit-button">
                     Add Book
                 </button>
             </form>

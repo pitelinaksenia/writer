@@ -1,30 +1,33 @@
+import React from "react";
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import LibraryBook from '../../components/LibraryBook/LibraryBook.jsx';
-import {deleteBook, getBooks} from '../../api/books.js';
+import LibraryBook from '../../components/LibraryBook/LibraryBook';
+import {deleteBook, getBooks} from '../../domain/book/bookService';
 import styles from './LibraryPage.module.css';
+import {Book} from "../../domain/book/book";
 
-const LibraryPage = () => {
-    const [books, setBooks] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+
+const LibraryPage: React.FC = () => {
+    const [books, setBooks] = useState<Book[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
             try {
-                const data = await getBooks();
+                const data: any = await getBooks();  //протипизировать нормально
                 console.log(data);
                 setBooks(data || []);
                 setLoading(false);
             } catch (err) {
-                setError(err.message);
+                setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
                 setLoading(false);
             }
         })();
     }, []);
 
-    const handleBookClick = (bookId) => {
+    const handleBookClick = (bookId: string): void => {
         navigate(`/book/${bookId}`);
     };
 
@@ -36,7 +39,7 @@ const LibraryPage = () => {
         return <div className={styles.libraryPage}>Ошибка: {error}</div>;
     }
 
-    const handleDeleteBook = async (bookId) => {
+    const handleDeleteBook = async (bookId: string): Promise<void> => {
         setLoading(true);
         try {
 
@@ -47,14 +50,14 @@ const LibraryPage = () => {
             } else {
                 setError('Не удалось удалить книгу');
             }
-        } catch (err) {
-            setError('Ошибка при удалении книги: ' + err.message);
+        } catch (err: unknown) {
+            setError('Ошибка при удалении книги: ' + (err instanceof Error ? err.message : 'Неизвестная ошибка'));
         } finally {
             setLoading(false);
         }
     };
 
-    const handleUpdateBook = (bookId) => {
+    const handleUpdateBook = (bookId: string): void => {
         navigate(`/updatebook/${bookId}`);
     };
 
@@ -64,7 +67,6 @@ const LibraryPage = () => {
 
     if (error) {
         return <div className={styles.libraryPage}>Ошибка: {error}</div>;
-
     }
 
     return (
@@ -72,7 +74,7 @@ const LibraryPage = () => {
             <h1 className={styles.pageTitle}>Библиотека</h1>
             <div className={styles.booksList}>
                 {books.length > 0 ? (
-                    books.map((book) => (
+                    books.map((book: Book) => (
                         <LibraryBook
                             key={book.id}
                             bookId={book.id}
