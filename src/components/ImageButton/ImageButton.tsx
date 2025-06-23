@@ -4,7 +4,7 @@ import ArrowRight from "../../assets/images/arrow-button-right.svg";
 import styles from "./ImageButton.module.css";
 
 interface ImageButtonProps {
-    name: keyof typeof images;
+    name: keyof typeof images; //переменная name может принимать только значения, которые являются ключами images
     width: string;
     height: string;
     onClick: (event: React.MouseEvent<HTMLImageElement>) => void;
@@ -24,7 +24,7 @@ const ImageButton: React.FC<ImageButtonProps> = ({name, width, height, onClick})
     return Image ? (
         <img
             src={Image}
-            alt={name as string} //не нрав
+            alt={name as string}
             width={width}
             height={height}
             onClick={onClick}

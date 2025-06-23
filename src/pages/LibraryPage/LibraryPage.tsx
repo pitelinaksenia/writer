@@ -16,7 +16,7 @@ const LibraryPage: React.FC = () => {
     useEffect(() => {
         (async () => {
             try {
-                const data: any = await getBooks();  //протипизировать нормально
+                const data: Book[] | null = await getBooks();
                 console.log(data);
                 setBooks(data || []);
                 setLoading(false);
