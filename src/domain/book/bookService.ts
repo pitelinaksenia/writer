@@ -14,7 +14,7 @@ export async function getBooks(): Promise<Book[] | null> {
 
             const promiseArray = books.map(async (book: Book) => {
                 if (book.coverPath) {
-                    book.coverPath = await getFileURL(book.coverPath);
+                    book.coverPath = await getFileURL(book.coverPath, coverBucket);
                 }
                 return book;
             })
@@ -164,8 +164,12 @@ export async function getBookDetails(bookId: string): Promise<Book | null> {
         if (snapshot.exists()) {
             const bookData: Book = snapshot.val();
             if (bookData.coverPath) {
-                bookData.coverPath = await getFileURL(bookData.coverPath);
+                bookData.coverPath = await getFileURL(bookData.coverPath, coverBucket);
                 console.log("Cover URL:", bookData.coverPath);
+            }
+            if (bookData.sourcePath) {
+                bookData.sourcePath = await getFileURL(bookData.sourcePath, bookBucket);
+                console.log("Cover URL:", bookData.sourcePath);
             }
             return bookData;
         } else {

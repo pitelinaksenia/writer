@@ -54,62 +54,62 @@ const AddBookForm: React.FC = () => {
 
     return (
         <div className="add-book-container">
-            <h2>Add a New Book</h2>
+            <h2>Добавить новую книгу</h2>
             <form onSubmit={handleSubmit} className="add-book-form">
                 <div className="form-group">
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title">Название</label>
                     <input
                         type="text"
                         name="title"
                         id="title"
                         value={bookData.title}
                         onChange={handleInputChange}
-                        placeholder="Enter book title"
+                        placeholder="Введите название"
                         required
                     />
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="author">Author</label>
+                    <label htmlFor="author">Автор</label>
                     <input
                         type="text"
                         name="author"
                         id="author"
                         value={bookData.author}
                         onChange={handleInputChange}
-                        placeholder="Enter author name"
+                        placeholder="ФИО"
                         required
                     />
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="description">Аннотация</label>
                     <textarea
                         name="description"
                         id="description"
                         value={bookData.description}
                         onChange={handleInputChange}
-                        placeholder="Enter book description"
+                        placeholder="Введите аннотацию"
                         rows={4}
                     />
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="year">Year of Publication</label>
+                    <label htmlFor="year">Год публикации</label>
                     <input
                         type="number"
                         name="year"
                         id="year"
                         value={bookData.year}
                         onChange={handleInputChange}
-                        placeholder="Enter publication year"
+                        placeholder="Введите год публикации"
                         min="1000"
-                        max="2025"
+                        max="3000"
                     />
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="cover">Book Cover</label>
+                    <label htmlFor="cover">Обложка</label>
                     <input
                         type="file"
                         name="cover"
@@ -123,7 +123,7 @@ const AddBookForm: React.FC = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="source">Book File</label>
+                    <label htmlFor="source">Файл книги</label>
                     <input
                         type="file"
                         name="source"
@@ -134,7 +134,7 @@ const AddBookForm: React.FC = () => {
                 </div>
 
                 <button type="submit" className="submit-button">
-                    Add Book
+                    Добавить книгу
                 </button>
             </form>
         </div>
