@@ -26,20 +26,20 @@
     gap: 1rem;
 }
 
-.form-group {
+.formGroup {
     display: flex;
     flex-direction: column;
 }
 
-.form-group label {
+.formGroup label {
     font-size: 0.875rem;
     font-weight: medium;
     color: #4a4a4a;
     margin-bottom: 0.25rem;
 }
 
-.form-group input,
-.form-group textarea {
+.formGroup input,
+.formGroup textarea {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -48,17 +48,17 @@
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.formGroup input:focus,
+.formGroup textarea:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-.form-group textarea {
+.formGroup textarea {
     resize: vertical;
 }
 
-.form-group input[type="file"] {
+.formGroup input[type="file"] {
     padding: 0.25rem;
 }
 

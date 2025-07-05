@@ -120,13 +120,15 @@ export async function updateBook(bookData: BookDataWithActionStatus): Promise<bo
             bookData.id,
             bookData.coverActionStatus ?? FileEditAction.Keep,
             bookData.cover ?? null,
-            coverBucket
+            coverBucket,
+            bookData.coverPath
         ),
         sourcePath: await handleFileEditAction(
             bookData.id,
             bookData.sourceActionStatus ?? FileEditAction.Keep,
             bookData.source ?? null,
-            bookBucket
+            bookBucket,
+            bookData.sourcePath
         ),
     };
 
@@ -140,8 +142,8 @@ export async function updateBook(bookData: BookDataWithActionStatus): Promise<bo
     }
 }
 
-async function handleFileEditAction(fileKey: string, editAction: FileEditAction, file: File | null, bucketName: string) {
-    let filePath: string | null = null;
+async function handleFileEditAction(fileKey: string, editAction: FileEditAction, file: File | null, bucketName: string, currentFilePath: string | null) {
+    let filePath: string | null = currentFilePath;
     if (editAction === FileEditAction.Remove) {
         await deleteFileFromStorage(bucketName, fileKey);
         filePath = null;
@@ -163,6 +165,7 @@ export async function getBookDetails(bookId: string): Promise<Book | null> {
         const snapshot = await get(ref(db, `books/${bookId}`));
         if (snapshot.exists()) {
             const bookData: Book = snapshot.val();
+            console.log("Raw sourcePath from DB:", bookData.sourcePath);
             if (bookData.coverPath) {
                 bookData.coverPath = await getFileURL(bookData.coverPath, coverBucket);
                 console.log("Cover URL:", bookData.coverPath);
