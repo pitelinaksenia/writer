@@ -41,8 +41,12 @@ const UpdateBookForm: React.FC = () => {
                         author: bookData.author,
                         description: bookData.description,
                         year: bookData.year || "",
-                        coverPath: bookData.coverPath || null,
-                        sourcePath: bookData.sourcePath || null,
+                        coverPath: bookData.coverPath && bookData.coverPath.startsWith("https://")
+                            ? bookData.coverPath.split("/").pop()?.split("?")[0] || null
+                            : bookData.coverPath || null,
+                        sourcePath: bookData.sourcePath && bookData.sourcePath.startsWith("https://")
+                            ? bookData.sourcePath.split("/").pop()?.split("?")[0] || null
+                            : bookData.sourcePath || null,
                         cover: null,
                         source: null,
                         coverActionStatus: FileEditAction.Keep,

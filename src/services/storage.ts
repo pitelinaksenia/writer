@@ -47,10 +47,10 @@ export async function addFileToStorage(file: File | null, bucketName: string, fi
 }
 
 
-export async function getFileURL(imageKey: string) {
+export async function getFileURL(imageKey: string, bucketName: string): Promise<string> {
     if (!imageKey) return '';
     const params = {
-        Bucket: coverBucket,
+        Bucket: bucketName,
         Key: imageKey,
     };
 
