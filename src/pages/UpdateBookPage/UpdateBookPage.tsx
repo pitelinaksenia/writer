@@ -6,7 +6,6 @@ import {updateBook, getBookDetails} from "../../domain/book/bookService.js"
 import {BookDataWithActionStatus, FileEditAction} from "../../domain/book/book";
 import styles from "./UpdateBookPage.module.css";
 
-
 const UpdateBookForm: React.FC = () => {
     const {bookId} = useParams();
     const [bookData, setBookData] = useState<BookDataWithActionStatus>({
